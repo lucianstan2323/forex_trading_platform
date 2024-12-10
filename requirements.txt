@@ -1,0 +1,26 @@
+# Core dependencies
+fastapi==0.100.0
+uvicorn[standard]==0.23.0
+
+# Database dependencies
+sqlalchemy==2.0.20
+databases==0.9.0
+alembic==1.12.0
+psycopg2-binary==2.9.7  # For PostgreSQL (use the appropriate DB driver)
+
+# WebSocket dependencies
+websockets==11.0.3
+
+# Testing dependencies
+httpx==0.24.0  # For testing FastAPI's TestClient
+
+# Linting and formatting
+black==23.9.1
+flake8==6.1.0
+isort==5.12.0
+
+# Environment variable management
+python-dotenv==1.0.0
+
+# Optional: Logging
+loguru==0.7.1

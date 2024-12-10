@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  api-server:
+    build:
+      context: .
+      dockerfile: Dockerfile # Build the API server from the Dockerfile in the current directory
+    ports:
+      - "8081:8081" # Expose FastAPI app on port 8080
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/forex_db
+    networks:
+      - app-network
+
+  test-suite:
+    build:
+      context: .
+      dockerfile: Dockerfile_test  # Build the test container from Dockerfile.test
+    depends_on:
+      - api-server # Ensure the API server starts before the tests run
+    environment:
+      - API_URL=http://api-server:8081 # Point tests to the API server container
+    networks:
+      - app-network
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: forex_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
