@@ -1,11 +1,6 @@
 # Use the official Python image from the Docker Hub
 FROM python:3.11-slim
 
-# Install necessary system utilities and Python dependencies
-RUN apt-get update && apt-get install -y \
-    net-tools iproute2 lsof curl \
-    && rm -rf /var/lib/apt/lists/*
-
 # Set the working directory inside the container
 WORKDIR /forex_api
 

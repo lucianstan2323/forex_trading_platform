@@ -14,4 +14,7 @@ RUN pip install --no-cache-dir -r requirements_test.txt
 COPY . .
 
 # Run pytest tests on container startup
-CMD ["pytest", "--maxfail=1", "--disable-warnings", "-q"]
+#CMD ["pytest", "--html=/tests/report/report.html", "--self-contained-html", "--cov=forex_api", "--cov-report=html", "--maxfail=1", "--disable-warnings", "-q"]
+CMD ["/bin/bash", "-c", "pytest --self-contained-html --cov=forex_api --cov-report=html && ls -lsa && sleep 5 && ls -lsa"]
+
+
