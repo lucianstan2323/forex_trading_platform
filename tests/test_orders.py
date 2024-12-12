@@ -79,6 +79,12 @@ class TestOrders:
         assert response.json()["status"] == "canceled"
 
     @pytest.mark.asyncio
+    async def test_delete_nonexistent_order(self, client, base_url):
+        url = f"{base_url}/orders/nonexistent"
+        response = client.delete(url)
+        assert response.status_code == 404
+
+    @pytest.mark.asyncio
     async def test_get_nonexistent_order(self, client, base_url):
         url = f"{base_url}/orders/nonexistent"
         response = client.get(url)
