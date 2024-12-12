@@ -8,7 +8,7 @@ For Basic requirements, checkout the main branch.
 
 ## 1.3. Run
 Navigate to project directory and run the below command:
-	`docker-compose up --build`
+	```docker-compose up --build```
 
 ## 1.4. Check the test results
 The test report can be found in /reports/report.html.
