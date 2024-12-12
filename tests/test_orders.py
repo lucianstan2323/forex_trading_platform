@@ -17,9 +17,16 @@ class TestOrders:
         assert response.json()["stoks"] == "EURUSD"
 
     @pytest.mark.asyncio
-    async def test_create_order_invalid(self, client, base_url):
+    async def test_create_order_invalid_missing_quantity(self, client, base_url):
         url = f"{base_url}/orders/"
         payload = {"stoks": "EURUSD"}  # Missing quantity
+        response = client.post(url, json=payload)
+        assert response.status_code == 400
+
+    @pytest.mark.asyncio
+    async def test_create_order_invalid_missing_stoks(self, client, base_url):
+        url = f"{base_url}/orders/"
+        payload = {"quantity": "70"}  # Missing stoks
         response = client.post(url, json=payload)
         assert response.status_code == 400
 
