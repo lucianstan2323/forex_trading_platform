@@ -15,6 +15,9 @@ class TestOrders:
         response = client.post(url, json=payload)
         assert response.status_code == 201
         assert response.json()["stoks"] == "EURUSD"
+        assert response.json()["quantity"] == 100
+        assert response.json()["id"] != ""
+        assert response.json()["status"] == "pending"
 
     @pytest.mark.asyncio
     async def test_create_order_invalid_missing_quantity(self, client, base_url):
@@ -57,6 +60,9 @@ class TestOrders:
         response = client.get(url)
         assert response.status_code == 200
         assert response.json()["id"] == order_id
+        assert response.json()["stoks"] == "GBPUSD"
+        assert response.json()["quantity"] == 50
+        assert response.json()["status"] == "pending"
 
     @pytest.mark.asyncio
     async def test_delete_specific_order(self, client, base_url):
