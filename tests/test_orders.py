@@ -59,6 +59,26 @@ class TestOrders:
         assert response.json()["id"] == order_id
 
     @pytest.mark.asyncio
+    async def test_delete_specific_order(self, client, base_url):
+        url = f"{base_url}/orders/"
+        # Create order first
+        payload = {"stoks": "GBPUSD", "quantity": 50}
+        post_response = client.post(url, json=payload)
+        order_id = post_response.json()["id"]
+        print("order_id: ", order_id)
+
+        # Delete the specific order
+        url = f"{base_url}/orders/{order_id}"
+        response = client.delete(url)
+        assert response.status_code == 204
+
+        # Get the specific order
+        url = f"{base_url}/orders/{order_id}"
+        response = client.get(url)
+        assert response.status_code == 200
+        assert response.json()["status"] == "canceled"
+
+    @pytest.mark.asyncio
     async def test_get_nonexistent_order(self, client, base_url):
         url = f"{base_url}/orders/nonexistent"
         response = client.get(url)
