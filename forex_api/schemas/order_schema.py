@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Literal
 
 class OrderBase(BaseModel):
     stoks: str
@@ -9,7 +10,9 @@ class OrderCreate(OrderBase):
 
 class OrderResponse(OrderBase):
     id: str
-    status: str
+    quantity: float
+    stoks: str
+    status: Literal["pending", "executed", "canceled"]
 
 class ErrorResponse(BaseModel):
     code: int

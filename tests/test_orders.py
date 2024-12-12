@@ -1,4 +1,5 @@
 import pytest
+from forex_api.schemas.order_schema import OrderResponse
 
 class TestOrders:
     @pytest.mark.asyncio
@@ -13,6 +14,7 @@ class TestOrders:
         url = f"{base_url}/orders/"
         payload = {"stoks": "EURUSD", "quantity": 100}
         response = client.post(url, json=payload)
+        response_order = OrderResponse(**response.json())
         assert response.status_code == 201
         assert response.json()["stoks"] == "EURUSD"
         assert response.json()["quantity"] == 100
@@ -52,12 +54,14 @@ class TestOrders:
         url = f"{base_url}/orders/"
         # Create order first
         payload = {"stoks": "GBPUSD", "quantity": 50}
-        post_response = client.post(url, json=payload)
-        order_id = post_response.json()["id"]
+        response = client.post(url, json=payload)
+        response_order = OrderResponse(**response.json())
+        order_id = response.json()["id"]
 
         # Get the specific order
         url = f"{base_url}/orders/{order_id}"
         response = client.get(url)
+        response_order = OrderResponse(**response.json())
         assert response.status_code == 200
         assert response.json()["id"] == order_id
         assert response.json()["stoks"] == "GBPUSD"
@@ -69,8 +73,8 @@ class TestOrders:
         url = f"{base_url}/orders/"
         # Create order first
         payload = {"stoks": "GBPUSD", "quantity": 50}
-        post_response = client.post(url, json=payload)
-        order_id = post_response.json()["id"]
+        response = client.post(url, json=payload)
+        order_id = response.json()["id"]
         print("order_id: ", order_id)
 
         # Delete the specific order
@@ -81,6 +85,7 @@ class TestOrders:
         # Get the specific order
         url = f"{base_url}/orders/{order_id}"
         response = client.get(url)
+        response_order = OrderResponse(**response.json())
         assert response.status_code == 200
         assert response.json()["status"] == "canceled"
 
