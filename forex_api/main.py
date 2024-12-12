@@ -1,4 +1,6 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
+import random
+import asyncio
 from fastapi.exceptions import RequestValidationError  # Import RequestValidationError
 from fastapi.responses import JSONResponse
 from forex_api.routers import orders_router, websocket_router, health_router
@@ -30,3 +32,10 @@ async def validation_exception_handler(request, exc: RequestValidationError):
         status_code=400,  # Override 422 with 400
         content={"detail": "Invalid input"}
     )
+
+@app.middleware("http")
+async def add_random_delay(request: Request, call_next):
+    delay = random.uniform(0.1, 1.0)  # Random delay between 0.1 and 1 second
+    await asyncio.sleep(delay)        # Asynchronous delay
+    response = await call_next(request)
+    return response
