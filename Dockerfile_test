@@ -1,6 +1,6 @@
 # Use the same base image
 FROM python:3.11-slim
-
+    
 # Set the working directory for the test container
 WORKDIR /tests
 

@@ -8,6 +8,12 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:password@db:5432/forex_db
     command: ["uvicorn", "forex_api.main:app", "--host", "0.0.0.0", "--port", "8081"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/health"]  # Health check command
+      interval: 600s
+      retries: 1
+      start_period: 3s
+      timeout: 5s
     networks:
       - app-network
     depends_on:
@@ -27,11 +33,13 @@ services:
       context: .
       dockerfile: Dockerfile_test  # Build the test container from Dockerfile.test
     depends_on:
-      - api-server # Ensure the API server starts before the tests run
+      api-server: # Ensure the API server starts before the tests run
+        condition: service_healthy
+
     environment:
       - API_URL=http://api-server:8081 # Point tests to the API server container
     working_dir: /tests
-    command: ["/bin/bash", "-c", "pytest --html=/tests/reports/report.html --self-contained-html --cov=forex_api --cov-report=html"]
+    command: ["/bin/bash", "-c", "pytest --base-url=http://api-server:8081 --html=/tests/reports/report.html --self-contained-html --cov=forex_api --cov-report=html"]
     volumes:
       - ./reports:/tests/reports
     networks:

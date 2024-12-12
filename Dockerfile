@@ -1,6 +1,8 @@
 # Use the official Python image from the Docker Hub
 FROM python:3.11-slim
 
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
 # Set the working directory inside the container
 WORKDIR /forex_api
 

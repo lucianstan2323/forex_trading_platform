@@ -1,5 +1,7 @@
-from fastapi import FastAPI
-from forex_api.routers import orders_router, websocket_router
+from fastapi import FastAPI, HTTPException
+from fastapi.exceptions import RequestValidationError  # Import RequestValidationError
+from fastapi.responses import JSONResponse
+from forex_api.routers import orders_router, websocket_router, health_router
 from forex_api.database import init_db
 
 app = FastAPI(
@@ -9,6 +11,7 @@ app = FastAPI(
 )
 
 # Include routers
+app.include_router(health_router.router, tags=["Health"])
 app.include_router(orders_router.router, prefix="/orders", tags=["Orders"])
 app.include_router(websocket_router.router, tags=["WebSocket"])
 
@@ -19,3 +22,11 @@ async def startup():
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the Forex Trading Platform API"}
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request, exc: RequestValidationError):
+    # This handler catches validation errors and returns a 400 Bad Request instead of the default 422
+    return JSONResponse(
+        status_code=400,  # Override 422 with 400
+        content={"detail": "Invalid input"}
+    )
