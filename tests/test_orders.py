@@ -38,6 +38,13 @@ class TestOrders:
         assert response.status_code == 400
 
     @pytest.mark.asyncio
+    async def test_create_order_invalid_stoks(self, client, base_url):
+        url = f"{base_url}/orders/"
+        payload = {"stoks": -50, "quantity": 100} # stoks is numerical
+        response = client.post(url, json=payload)
+        assert response.status_code == 400
+
+    @pytest.mark.asyncio
     async def test_get_specific_order(self, client, base_url):
         url = f"{base_url}/orders/"
         # Create order first
