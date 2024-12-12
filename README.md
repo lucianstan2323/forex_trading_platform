@@ -1,12 +1,18 @@
-# 1. Install the requirements locally
-Navigate to project directory and run the below commands to install required packages
+# 1. Setup for Basic requiremennts
 
-sudo apt install python3.11-venv
-python3 -m venv .venv
-source .venv/bin/activate
-python3 -m pip install -r requirements.txt
+## 1.1. Prerequisite
+For setup, docker and docker-compose must be installed
 
-# 2. Server setup aand run using docker
+## 1.2. Branch 
+For Basic requirements, checkout main branch 
 
-docker build -t forex_trading_platform_api_server .
-docker run -d -p 8081:8081 forex_trading_platform_api_server
+## 1.3. Run
+Navigate to project directory and run the below commands:
+docker-compose up --build
+
+## 1.4. Check test results
+The test report can be found in /reports/report.html
+
+# 3. API documentation
+While the server container is running(after step 1.3. for example) you can check the API documentation: http://localhost:8081/docs
+
