@@ -1,5 +1,5 @@
 import pytest
-from forex_api.schemas.order_schema import OrderResponse
+from forex_api.schemas.order_schema import OrderResponse, ErrorResponse
 
 class TestOrders:
     @pytest.mark.asyncio

@@ -5,6 +5,7 @@ from fastapi.exceptions import RequestValidationError  # Import RequestValidatio
 from fastapi.responses import JSONResponse
 from forex_api.routers import orders_router, websocket_router, health_router
 from forex_api.database import init_db
+from forex_api.schemas.order_schema import OrderResponse, ErrorResponse
 
 app = FastAPI(
     title="Forex Trading Platform API",
