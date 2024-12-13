@@ -6,6 +6,7 @@ from datetime import datetime
 import asyncio
 import random
 from sqlalchemy.future import select
+from forex_api.services.websocket_handler import WebSocketHandler
 
 class OrderService:
     
@@ -57,6 +58,8 @@ class OrderService:
 
             await db.commit()
             await db.refresh(order) 
+
+            await WebSocketHandler.broadcast_order_status(order_id, "executed")
 
             return OrderResponse.from_orm(order)
     
