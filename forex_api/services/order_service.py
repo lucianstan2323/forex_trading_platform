@@ -72,4 +72,7 @@ class OrderService:
                     return False
                 order.status = "canceled"
             await db.commit()
+
+            await WebSocketHandler.broadcast_order_status(order_id, "canceled")
+            
         return True
