@@ -42,6 +42,8 @@ class OrderService:
             await db.commit()  # Commit the new order
             await db.refresh(new_order) 
                     
+        await WebSocketHandler.broadcast_order_status(order_id, "pending")
+
         return OrderResponse.from_orm(new_order)
 
     async def update_order_status_to_executed(order_id: str):
