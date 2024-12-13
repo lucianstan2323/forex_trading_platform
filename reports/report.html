@@ -439,10 +439,10 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
 }
 </script>
     <h1>report.html</h1>
-    <p>Report generated on 13-Dec-2024 at 10:29:08 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.2.0</p>
+    <p>Report generated on 13-Dec-2024 at 10:53:44 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.2.0</p>
     <h2>Summary</h2>
-    <p>10 tests ran in 22.81 seconds. </p>
-    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">7 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">3 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <p>10 tests ran in 15.19 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">9 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">1 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
       <thead id="results-table-head">
@@ -457,34 +457,25 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <tr>
           <td class="col-result">Failed</td>
           <td class="col-name">tests/test_orders.py::TestOrders::test_get_all_orders</td>
-          <td class="col-duration">0.41</td>
+          <td class="col-duration">0.70</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log">self = &lt;tests.test_orders.TestOrders object at 0x7976a1c4e050&gt;<br/>client = &lt;requests.sessions.Session object at 0x79769f6c2750&gt;<br/>base_url = &#x27;http://api-server:8081&#x27;<br/><br/>    @pytest.mark.asyncio<br/>    async def test_get_all_orders(self, client, base_url):<br/>        url = f&quot;{base_url}/orders/&quot;<br/>        response = client.get(url)<br/>&gt;       assert response.status_code == 200<br/><span class="error">E       assert 500 == 200</span><br/><span class="error">E        +  where 500 = &lt;Response [500]&gt;.status_code</span><br/><br/>tests/test_orders.py:9: AssertionError<br/></div></td></tr></tbody>
-      <tbody class="failed results-table-row">
+            <div class="log">self = &lt;tests.test_orders.TestOrders object at 0x74e2bba1a050&gt;<br/>client = &lt;requests.sessions.Session object at 0x74e2b9492510&gt;<br/>base_url = &#x27;http://api-server:8081&#x27;<br/><br/>    @pytest.mark.asyncio<br/>    async def test_get_all_orders(self, client, base_url):<br/>        url = f&quot;{base_url}/orders/&quot;<br/>        response = client.get(url)<br/>&gt;       assert response.status_code == 200<br/><span class="error">E       assert 500 == 200</span><br/><span class="error">E        +  where 500 = &lt;Response [500]&gt;.status_code</span><br/><br/>tests/test_orders.py:9: AssertionError<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
         <tr>
-          <td class="col-result">Failed</td>
+          <td class="col-result">Passed</td>
           <td class="col-name">tests/test_orders.py::TestOrders::test_create_order</td>
-          <td class="col-duration">5.04</td>
+          <td class="col-duration">0.43</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log">self = &lt;tests.test_orders.TestOrders object at 0x79769f6cd510&gt;<br/>client = &lt;requests.sessions.Session object at 0x79769f6c23d0&gt;<br/>base_url = &#x27;http://api-server:8081&#x27;<br/><br/>    @pytest.mark.asyncio<br/>    async def test_create_order(self, client, base_url):<br/>        url = f&quot;{base_url}/orders/&quot;<br/>        payload = {&quot;stoks&quot;: &quot;EURUSD&quot;, &quot;quantity&quot;: 100}<br/>        response = client.post(url, json=payload)<br/>        response_order = OrderResponse(**response.json())<br/>        assert response.status_code == 201<br/>        assert response.json()[&quot;stoks&quot;] == &quot;EURUSD&quot;<br/>        assert response.json()[&quot;quantity&quot;] == 100<br/>        assert response.json()[&quot;id&quot;] != &quot;&quot;<br/>&gt;       assert response.json()[&quot;status&quot;] == &quot;pending&quot;<br/><span class="error">E       AssertionError: assert &#x27;executed&#x27; == &#x27;pending&#x27;</span><br/><span class="error">E         - pending</span><br/><span class="error">E         + executed</span><br/><br/>tests/test_orders.py:22: AssertionError<br/></div></td></tr></tbody>
-      <tbody class="failed results-table-row">
-        <tr>
-          <td class="col-result">Failed</td>
-          <td class="col-name">tests/test_orders.py::TestOrders::test_get_specific_order</td>
-          <td class="col-duration">7.46</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log">self = &lt;tests.test_orders.TestOrders object at 0x79769f6cddd0&gt;<br/>client = &lt;requests.sessions.Session object at 0x79769f6ac6d0&gt;<br/>base_url = &#x27;http://api-server:8081&#x27;<br/><br/>    @pytest.mark.asyncio<br/>    async def test_get_specific_order(self, client, base_url):<br/>        url = f&quot;{base_url}/orders/&quot;<br/>        # Create order first<br/>        payload = {&quot;stoks&quot;: &quot;GBPUSD&quot;, &quot;quantity&quot;: 50}<br/>        response = client.post(url, json=payload)<br/>        response_order = OrderResponse(**response.json())<br/>        order_id = response.json()[&quot;id&quot;]<br/>    <br/>        # Get the specific order<br/>        url = f&quot;{base_url}/orders/{order_id}&quot;<br/>        response = client.get(url)<br/>        response_order = OrderResponse(**response.json())<br/>        assert response.status_code == 200<br/>        assert response.json()[&quot;id&quot;] == order_id<br/>        assert response.json()[&quot;stoks&quot;] == &quot;GBPUSD&quot;<br/>        assert response.json()[&quot;quantity&quot;] == 50<br/>&gt;       assert response.json()[&quot;status&quot;] == &quot;pending&quot;<br/><span class="error">E       AssertionError: assert &#x27;executed&#x27; == &#x27;pending&#x27;</span><br/><span class="error">E         - pending</span><br/><span class="error">E         + executed</span><br/><br/>tests/test_orders.py:69: AssertionError<br/></div></td></tr></tbody>
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">tests/test_orders.py::TestOrders::test_create_order_invalid_missing_quantity</td>
-          <td class="col-duration">0.71</td>
+          <td class="col-duration">0.48</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -493,7 +484,7 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">tests/test_orders.py::TestOrders::test_create_order_invalid_missing_stoks</td>
-          <td class="col-duration">0.79</td>
+          <td class="col-duration">0.67</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -502,7 +493,7 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">tests/test_orders.py::TestOrders::test_create_order_invalid_quantity</td>
-          <td class="col-duration">0.51</td>
+          <td class="col-duration">0.42</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -511,7 +502,16 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">tests/test_orders.py::TestOrders::test_create_order_invalid_stoks</td>
-          <td class="col-duration">0.47</td>
+          <td class="col-duration">0.57</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">tests/test_orders.py::TestOrders::test_get_specific_order</td>
+          <td class="col-duration">5.13</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -520,17 +520,17 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">tests/test_orders.py::TestOrders::test_delete_specific_order</td>
-          <td class="col-duration">5.80</td>
+          <td class="col-duration">5.24</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>order_id:  d4ed7933-29b0-46f1-89c1-d72f08c20d0d
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>order_id:  8849fdc6-3c75-4d77-a243-cc65211874da
 <br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">tests/test_orders.py::TestOrders::test_delete_nonexistent_order</td>
-          <td class="col-duration">0.45</td>
+          <td class="col-duration">0.54</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -539,7 +539,7 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">tests/test_orders.py::TestOrders::test_get_nonexistent_order</td>
-          <td class="col-duration">0.56</td>
+          <td class="col-duration">0.49</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
