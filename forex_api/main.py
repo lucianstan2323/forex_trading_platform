@@ -20,7 +20,7 @@ app.include_router(websocket_router.router, tags=["WebSocket"])
 
 @app.on_event("startup")
 async def startup():
-    init_db()
+    await init_db()
 
 @app.get("/")
 def read_root():

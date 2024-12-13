@@ -6,7 +6,7 @@ services:
     ports:
       - "8081:8081" # Expose FastAPI app on port 8081
     environment:
-      - DATABASE_URL=postgresql://postgres:password@db:5432/forex_db
+      - DATABASE_URL=postgresql+asyncpg://postgres:password@db:5432/forex_db
     command: ["uvicorn", "forex_api.main:app", "--host", "0.0.0.0", "--port", "8081"]
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8081/health"]  # Health check command
