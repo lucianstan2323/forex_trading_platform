@@ -12,9 +12,11 @@ class OrderService:
     async def get_all_orders():
         async with async_session() as db:
             result = await db.execute(select(Order))
-            return result.scalars().all()
+            orders = result.scalars().all()
+            if not orders:
+                return []
+            return [OrderResponse.from_orm(order) for order in orders]
 
-    
     async def get_order(order_id: str):
         """
         Retrieve an order from the database by its ID.
