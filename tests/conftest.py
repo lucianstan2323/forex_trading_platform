@@ -12,5 +12,5 @@ def pytest_addoption(parser):
     )
 
 @pytest.fixture
-def base_url(request):
+def api_url(request):
     return request.config.getoption("--api-url")

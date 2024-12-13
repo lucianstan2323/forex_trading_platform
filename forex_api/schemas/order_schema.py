@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Literal, Optional
 from datetime import datetime
 
@@ -17,8 +17,7 @@ class OrderResponse(OrderBase):
     created_timestamp: Optional[datetime]
     executed_timestamp: Optional[datetime]
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 class ErrorResponse(BaseModel):
     code: int

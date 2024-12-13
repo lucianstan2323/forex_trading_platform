@@ -9,6 +9,7 @@ class WebSocketHandler:
     async def handle_connection(websocket: WebSocket):
         await websocket.accept()
         active_connections.append(websocket)
+        await websocket.send_json("you are connected")
         logging.info("New WebSocket client connected.")
 
         try:
