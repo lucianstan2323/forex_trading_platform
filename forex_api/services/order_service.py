@@ -42,7 +42,7 @@ class OrderService:
             await db.commit()  # Commit the new order
             await db.refresh(new_order) 
                     
-        await WebSocketHandler.broadcast_order_status(order_id, "pending")
+        await WebSocketHandler.broadcast_order_status(new_order.id, "pending")
 
         return OrderResponse.from_orm(new_order)
 
